@@ -1,12 +1,18 @@
 spring:
   config:
     activate:
-      on-profile: test
+      on-profile: local
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;
-    username: sa
-    password:
+    query:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:testdb1;MODE=MySQL;
+      username: sa
+      password:
+    command:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:testdb2;MODE=MySQL;
+      username: sa
+      password:
   jpa:
     database-platform:
     show-sql: true
@@ -14,30 +20,21 @@ logging:
   level:
     org.hibernate.sql: debug
 ---
-spring:
-  config:
-    activate:
-      on-profile: test
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;
-    username: sa
-    password:
-  jpa:
-    database-platform:
-    show-sql: true
-logging:
-  level:
-    org.hibernate.sql: debug
----
+
 spring:
   config:
     activate:
       on-profile: dev
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;MODE=MySQL;
-    username: sa
-    password:
+    query:
+      url: jdbc:mysql://${QUERY-DB-ADDRESS}:3306/moaboa?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+      username: ${QUERY-DB-HOST}
+      password: ${QUERY-DB-PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    command:
+      url: jdbc:mysql://${COMMAND-DB-ADDRESS}:3306/report?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+      username: ${COMMAND-DB-HOST}
+      password: ${COMMAND-DB-PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
