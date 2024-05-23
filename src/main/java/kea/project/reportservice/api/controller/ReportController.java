@@ -1,7 +1,6 @@
 package kea.project.reportservice.api.controller;
 
-import kea.project.reportservice.api.service.ReportCommandService;
-import kea.project.reportservice.api.service.ReportQueryService;
+import kea.project.reportservice.api.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reports")
 public class ReportController {
 
-    private final ReportQueryService queryService;
-    private final ReportCommandService commandService;
+    private final ReportService queryService;
 
 }

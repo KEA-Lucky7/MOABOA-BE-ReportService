@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ReportQueryServiceImpl implements ReportQueryService {
+public class ReportServiceImpl implements ReportService {
 
 }
