@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = {
     ReportController.class,
-
 })
 public abstract class ControllerTestSupport {
 
