@@ -28,21 +28,4 @@ public class ReportController {
         Long memberId = 1L;
         return reportService.getReport(GetReportServiceDto.of(memberId, LocalDate.now()));
     }
-
-    @GetMapping("/compare/test")
-    public GetReportResponse GetReport(HttpServletRequest request){
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String headerName = headerNames.nextElement();
-            String headerValue = request.getHeader(headerName);
-            log.info("Header Name: {}, Header Value: {}", headerName, headerValue);
-        }
-        Long memberId = 1L;
-        return reportService.getReport(GetReportServiceDto.of(memberId, LocalDate.now()));
-    }
-    @GetMapping("/compare/test2")
-    public GetReportResponse GetReport(@RequestHeader("USER") Long memberId){
-        log.info("member id = {}",memberId);
-        return reportService.getReport(GetReportServiceDto.of(memberId, LocalDate.now()));
-    }
 }
