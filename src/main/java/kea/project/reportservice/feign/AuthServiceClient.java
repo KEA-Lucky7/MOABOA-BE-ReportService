@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "auth-service", configuration = HeaderConfiguration.class)
 public interface AuthServiceClient {
 
-    @PostMapping("/token/server-validation")
+    @PostMapping("/auth/token/server-validation")
     ResponseEntity<Long> validateToken();
 
 }
