@@ -1,8 +1,12 @@
 package kea.project.reportservice.global.common.exception;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import feign.FeignException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -13,11 +17,15 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.util.Map;
+import java.util.regex.Pattern;
+
 
 @RestControllerAdvice
 @RequiredArgsConstructor
 @Slf4j
 public class GlobalExceptionHandler {
+    private final ObjectMapper objectMapper;
 
     // 직접 정의한 에러
     @ExceptionHandler(CustomException.class)
@@ -100,5 +108,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity
             .status(e.getStatusCode())
             .body(errorResponse);
+    }
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<Map<String,String>> handleFeignException(FeignException e) throws JsonProcessingException {
+        String responseJson = e.contentUTF8();
+        Map<String, String> responseMap = objectMapper.readValue(responseJson, Map.class);
+
+        return ResponseEntity
+                .status(e.status())
+                .body(responseMap);
     }
 }

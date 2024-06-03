@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 @Getter
 @RequiredArgsConstructor
 public enum ResponseCode {
+    //Auth
     //GLOBAL
     BAD_REQUEST("GLB-ERR-001", HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     METHOD_NOT_ALLOWED("GLB-ERR-002", HttpStatus.METHOD_NOT_ALLOWED, "허용되지 않은 메서드입니다."),
@@ -18,7 +19,6 @@ public enum ResponseCode {
     private final String code;
     private final HttpStatus status;
     private final String message;
-
 
     public String getMessage(Throwable e) {
         return this.getMessage(this.getMessage() + " - " + e.getMessage());

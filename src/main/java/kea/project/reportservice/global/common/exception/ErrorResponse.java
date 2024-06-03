@@ -21,4 +21,8 @@ public class ErrorResponse {
     public static ErrorResponse of(ResponseCode code, String message) {
         return new ErrorResponse(code.getCode(), code.getMessage(message));
     }
+
+    public static ErrorResponse of(String code, String message) {
+        return new ErrorResponse(code, message);
+    }
 }
