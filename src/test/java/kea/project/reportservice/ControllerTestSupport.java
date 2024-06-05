@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kea.project.reportservice.api.controller.ReportController;
 import kea.project.reportservice.api.service.ReportService;
 import kea.project.reportservice.feign.AuthServiceClient;
+import kea.project.reportservice.kafka.ReportConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

@@ -55,4 +55,8 @@ public class ReportEntity extends BaseEntity {
                 .reportEntityState(state)
                 .build();
     }
+
+    public void updateAmount(Integer amount) {
+        this.amount += amount;
+    }
 }
