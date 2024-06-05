@@ -8,4 +8,5 @@ spring:
     include:
       - mysql
       - actuator
+      - kafka
     active: local
