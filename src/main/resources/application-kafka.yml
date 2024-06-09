@@ -1,4 +1,38 @@
+---
 spring:
+  config:
+    activate:
+      on-profile: local
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:12345
+      group-id: wallet-to-report
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic:
+      post:
+        name: test-debezium-connector
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:12345
+      group-id: wallet-to-report
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic:
+      post:
+        name: test-debezium-connector
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
   kafka:
     consumer:
       bootstrap-servers: ${KAFKA-BROKER}

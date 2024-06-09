@@ -3,4 +3,5 @@ spring:
     include:
       - mysql
       - kafka
+      - vault
     active: test

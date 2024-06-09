@@ -9,4 +9,5 @@ spring:
       - mysql
       - actuator
       - kafka
+      - vault
     active: local
