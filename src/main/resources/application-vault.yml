@@ -26,7 +26,7 @@ spring:
     vault:
       token: ${report-vault-token}
       scheme: http
-      host: localhost
+      host: vault
       port: 8200
       kv:
         enabled: true
