@@ -1,0 +1,34 @@
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    vault:
+      enabled: false
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  cloud:
+    vault:
+      enabled: false
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - vault://secret/database
+      - vault://secret/kafka
+  cloud:
+    vault:
+      token: ${report-vault-token}
+      scheme: http
+      host: localhost
+      port: 8200
+      kv:
+        enabled: true
+        backend: secret
+        profiles:
